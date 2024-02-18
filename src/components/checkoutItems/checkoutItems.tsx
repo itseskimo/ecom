@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/redux/store';
-import { decrease, increase ,remove} from '@/redux/features/cart/CartSlice';
+import { decrease, increase, remove } from '@/redux/features/cart/CartSlice';
 const checkoutItems = () => {
     const { cartItems } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch()
 
-    const handleRemoveFromCart = (item:Product) => {
+    const handleRemoveFromCart = (item: Product): void => {
         dispatch(remove(item));
     };
 
