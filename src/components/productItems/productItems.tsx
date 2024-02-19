@@ -2,12 +2,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { add } from '@/redux/features/cart/CartSlice';
+import { Product } from '@/config/env';
+import { ProductProps } from '@/config/env';
 
-interface productProps {
-    allProducts: Product[];
-}
-
-const productItems = ({ allProducts }: productProps) => {
+const productItems = ({ allProducts }: ProductProps) => {
 
     const dispatch = useDispatch()
 

@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authValidation } from '@/config/validation/authValidation';
 import { useRouter } from 'next/navigation';
-import { useState } from "react";
 import { signIn } from "next-auth/react"
+import { AuthInfo } from "@/config/env";
 
 const page = () => {
 
@@ -19,16 +19,14 @@ const page = () => {
         formState: { errors },
     } = useForm<AuthInfo>(formOptions);
 
-    const [errorMessage, setErrorMessage] = useState('');
 
     const onSubmit = async (data: AuthInfo) => {
 
-        setErrorMessage('')
         try {
             const res = await signIn('credentials', { ...data, redirect: false })
 
             if (res && res.error) {
-                setErrorMessage(res.error);
+                alert(res.error)
                 return;
             }
         } catch (error) {

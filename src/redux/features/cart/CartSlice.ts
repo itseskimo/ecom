@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { Cart } from "@/config/env";
 
 const localStorageAvailable = typeof localStorage !== 'undefined';
-
 
 const cartSlice = createSlice({
     name: "cart",

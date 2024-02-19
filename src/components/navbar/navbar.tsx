@@ -1,8 +1,10 @@
 'use client'
 import React from 'react'
 import { useRouter } from 'next/navigation';
+import { NavbarProps } from '@/config/env';
 
-const navbar = () => {
+
+const navbar: React.FC<NavbarProps> = ({ session }) => {
     const router = useRouter()
     return (
         <nav className='flex items-center justify-between bg-white shadow shadow-black p-4'>
@@ -37,8 +39,8 @@ const navbar = () => {
             </div>
 
             <ul className='flex items-center gap-5'>
-                <li className='cursor-pointer'>Hello Guest</li>
-                <li className='cursor-pointer' onClick={()=>router.push('/cart')}>Your Basket</li>
+                <li className='cursor-pointer'>Hello {session?.name || 'Guest'} </li>
+                <li className='cursor-pointer' onClick={() => router.push('/cart')}>Your Basket</li>
             </ul>
         </nav>
     )

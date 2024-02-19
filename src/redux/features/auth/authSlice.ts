@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from 'axios';
+import { AuthInfo, UserSignInResponse, AuthState } from "@/config/env";
 
 
-
-//UserInfo is the Response and AuthInfo is what we post
+//UserSignInResponse is the Response and AuthInfo is what we post
 export const registerUser = createAsyncThunk<UserSignInResponse, AuthInfo>("register", async (data, { rejectWithValue }) => {
 
     try {
@@ -57,4 +57,4 @@ const AuthSlice = createSlice({
 });
 
 export default AuthSlice.reducer;
-export const {resetSuccess} = AuthSlice.actions
+export const { resetSuccess } = AuthSlice.actions

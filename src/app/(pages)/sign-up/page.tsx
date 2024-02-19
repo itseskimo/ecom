@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { authValidation } from '@/config/validation/authValidation';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { AuthInfo } from '@/config/env';
 
 const page = () => {
 
