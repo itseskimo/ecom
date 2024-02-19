@@ -34,6 +34,7 @@ const page = () => {
     useEffect(() => {
         if (userInfo?.message) {
          router.push('/sign-in')
+         alert(userInfo?.message)
          dispatch(resetSuccess())
         }
     }, [userInfo])

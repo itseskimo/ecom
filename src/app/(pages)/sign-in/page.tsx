@@ -1,17 +1,14 @@
 'use client'
-import { RootState, useAppDispatch, AppDispatch } from '@/redux/store';
-import { registerUser } from '@/redux/features/auth/AuthSlice';
-import { useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authValidation } from '@/config/validation/authValidation';
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { signIn } from "next-auth/react"
 
 const page = () => {
 
     const router = useRouter()
-    const dispatch: AppDispatch = useAppDispatch();
-    const { userInfo } = useSelector((state: RootState) => state.auth);
 
     const formOptions = { resolver: yupResolver(authValidation) };
     const {
@@ -22,11 +19,22 @@ const page = () => {
         formState: { errors },
     } = useForm<AuthInfo>(formOptions);
 
-
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onSubmit = async (data: AuthInfo) => {
 
-    };
+        setErrorMessage('')
+        try {
+            const res = await signIn('credentials', { ...data, redirect: false })
+
+            if (res && res.error) {
+                setErrorMessage(res.error);
+                return;
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className=' flex items-center justify-center h-screen'>
@@ -53,7 +61,7 @@ const page = () => {
                 </div>
 
 
-                <p className=' text-right text-xs'>Not Registered? <span className='cursor-pointer underline underline-offset-2' onClick={()=>router.push('/sign-up')} >Sign Up</span></p>
+                <p className=' text-right text-xs'>Not Registered? <span className='cursor-pointer underline underline-offset-2' onClick={() => router.push('/sign-up')} >Sign Up</span></p>
                 <button className='bg-orange-400 py-2 rounded-sm text-white'>Submit</button>
 
             </form>
