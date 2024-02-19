@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CartSlice from "./features/cart/CartSlice";
-import AuthSlice from "./features/auth/authSlice";
+import AuthSlice from "./features/auth/AuthSlice";
 import { useDispatch } from "react-redux";
 
 export const store = configureStore({
@@ -16,7 +16,14 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 
 
-// interface UserResponse {
+
+
+
+// interface UserSignInResponse {
+//     message: string;
+// }
+
+// interface UserSignUpResponse {
 //     name: string;
 //     token: string;
 // }
@@ -27,7 +34,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 // }
 
 // interface AuthState {
-//     userInfo: UserResponse | null,
+//     userInfo: UserSignInResponse | null,
 //     error: string | null,
 // }
 
