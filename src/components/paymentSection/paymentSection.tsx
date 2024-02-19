@@ -7,6 +7,7 @@ import { getTotals } from '@/redux/features/cart/CartSlice';
 const paymentSection = () => {
     const { cartItems, cartTotalAmount } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(getTotals());
     }, [cartItems, dispatch]);
