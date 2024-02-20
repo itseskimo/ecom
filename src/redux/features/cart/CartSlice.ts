@@ -6,7 +6,8 @@ const localStorageAvailable = typeof localStorage !== 'undefined';
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        cartItems: localStorageAvailable && localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')!) : [],
+        // cartItems: localStorageAvailable && localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')!) : [],
+        cartItems:  [],
         cartTotalAmount: 0,
         cartTotalQuantity: 0,
         cartTotalDiscount: 0,

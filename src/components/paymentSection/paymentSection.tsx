@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/redux/store';
@@ -13,7 +14,7 @@ const paymentSection = () => {
     }, [cartItems, dispatch]);
 
     return (
-        <section className="bg-white p-5 flex flex-col gap-4 lg:gap-7 h-max sticky top-0">
+        <section className="bg-white p-5 flex flex-col gap-4 lg:gap-7 h-max sticky top-20">
             <h6 className="font-semibold text-[14px] sm:text-[16px] lg:text-[20px]">Cart Summary</h6>
             <div className="grid grid-cols-2 gap-4 lg:gap-7 text-[12px] sm:text-[14px] lg:text-[16px]">
 

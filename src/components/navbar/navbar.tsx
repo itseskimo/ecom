@@ -2,12 +2,18 @@
 import React from 'react'
 import { useRouter } from 'next/navigation';
 import { NavbarProps } from '@/config/env';
-
+import { signOut } from "next-auth/react";
+import Link from 'next/link';
 
 const navbar: React.FC<NavbarProps> = ({ session }) => {
     const router = useRouter()
+
+    const handleSignOut = async () => {
+        await signOut({ callbackUrl: "/" }); // You can specify the callback URL to redirect to after signing out.
+    };
+
     return (
-        <nav className='flex items-center justify-between bg-white shadow shadow-black p-4'>
+        <nav className='flex items-center justify-between bg-white shadow shadow-black p-4 sticky top-0'>
             <ul>
                 <li className='font-bold text-2xl cursor-pointer'>Amazon</li>
             </ul>
@@ -39,8 +45,10 @@ const navbar: React.FC<NavbarProps> = ({ session }) => {
             </div>
 
             <ul className='flex items-center gap-5'>
-                <li className='cursor-pointer'>Hello {session?.name || 'Guest'} </li>
-                <li className='cursor-pointer' onClick={() => router.push('/cart')}>Your Basket</li>
+                {!session?.name && <li className='cursor-pointer' onClick={() => router.push('/sign-in')}>Log In</li>}
+                {session?.name && <li className='cursor-pointer' > {`Hello ${session?.name}`}</li>}
+                {session?.name && <li className='cursor-pointer' onClick={handleSignOut}>Logout </li>}
+                <Link href="/cart">Basket</Link>
             </ul>
         </nav>
     )
