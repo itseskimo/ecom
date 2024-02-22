@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
-import { NextAuthOptions } from 'next-auth';
+import { AuthOptions } from 'next-auth';
 import { AuthInfo } from "@/config/env";
 
 declare module "next-auth" {
@@ -20,7 +20,7 @@ declare module "next-auth" {
     }
 }
 // Define your authentication options
-export const authOptions: NextAuthOptions = {
+export const authOptions: AuthOptions = {
     session: {
         strategy: "jwt",
     },
@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
                     } else {
                         return Promise.reject(null);
                     }
-                } catch (error:any) {
+                } catch (error: any) {
                     throw new Error(error.response.data.message);
                 }
             },
