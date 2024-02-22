@@ -7,7 +7,7 @@ import { authValidation } from '@/config/validation/authValidation';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthInfo } from '@/config/env';
-import { resetSuccess, registerUser } from '@/redux/features/auth/AuthSlice';
+import { resetSuccess, registerUser } from '../../../redux/features/auth/AuthSlice';
 
 const page = () => {
 
