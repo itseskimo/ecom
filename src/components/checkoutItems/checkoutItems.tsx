@@ -2,8 +2,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '@/redux/store';
-import { decrease, increase, remove } from '@/redux/features/cart/CartSlice';
+import { decrease, increase, remove ,setCartItems} from '@/redux/features/cart/CartSlice';
 import { Product } from '@/config/env';
+import { useEffect } from 'react';
 
 const checkoutItems = () => {
     const { cartItems } = useSelector((state: RootState) => state.cart);
@@ -20,6 +21,15 @@ const checkoutItems = () => {
     const handleDecreaseCart = (item: Product): void => {
         dispatch(decrease(item));
     };
+
+    // useEffect(() => {
+    //     if (localStorage.getItem('cartItems')) {
+    //         let items = JSON.parse(localStorage.getItem('cartItems')!)
+    //         setCartItems(items)
+    //         console.log(items)
+    //     }
+    // }, [cartItems])
+
     return (
         <section>
 
