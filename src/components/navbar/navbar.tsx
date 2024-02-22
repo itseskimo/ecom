@@ -14,9 +14,9 @@ const navbar: React.FC<NavbarProps> = ({ session }) => {
 
     return (
         <nav className='flex items-center justify-between bg-white shadow shadow-black p-4 sticky top-0'>
-            <ul>
-                <li className='font-bold text-2xl cursor-pointer'>Amazon</li>
-            </ul>
+
+            <Link className='font-bold text-2xl cursor-pointer' href="/">Amazon</Link>
+
 
             <div className="flex items-center relative w-[40%]">
                 <svg
