@@ -3,12 +3,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authValidation } from '@/config/validation/authValidation';
 import { useRouter } from 'next/navigation';
-import { signIn } from "next-auth/react"
+import { signIn ,useSession} from "next-auth/react"
 import { AuthInfo } from "@/config/env";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const page = () => {
 
     const router = useRouter()
+    const path = usePathname()
+    const session = useSession();
 
     const formOptions = { resolver: yupResolver(authValidation) };
     const {
@@ -33,6 +37,12 @@ const page = () => {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        if (session?.data?.token) {
+            window.location.href = '/'
+        }
+    }, [session]);
 
     return (
         <div className=' flex items-center justify-center h-screen'>
