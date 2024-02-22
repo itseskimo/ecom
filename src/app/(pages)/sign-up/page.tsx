@@ -1,6 +1,5 @@
 'use client'
 import { RootState, useAppDispatch, AppDispatch } from '@/redux/store';
-import { registerUser, resetSuccess } from '@/redux/features/auth/AuthSlice';
 import { useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +7,7 @@ import { authValidation } from '@/config/validation/authValidation';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthInfo } from '@/config/env';
+import { resetSuccess, registerUser } from '@/redux/features/auth/AuthSlice';
 
 const page = () => {
 
@@ -34,9 +34,9 @@ const page = () => {
 
     useEffect(() => {
         if (userInfo?.message) {
-         router.push('/sign-in')
-         alert(userInfo?.message)
-         dispatch(resetSuccess())
+            router.push('/sign-in')
+            alert(userInfo?.message)
+            dispatch(resetSuccess())
         }
     }, [userInfo])
 
