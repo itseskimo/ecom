@@ -24,7 +24,7 @@ export const registerUser = createAsyncThunk<UserSignInResponse, AuthInfo>("regi
 
 
 
-const AuthSlice = createSlice({
+const authSlice = createSlice({
     name: "auth",
 
     initialState: {
@@ -56,5 +56,5 @@ const AuthSlice = createSlice({
     },
 });
 
-export default AuthSlice.reducer;
-export const { resetSuccess } = AuthSlice.actions
+export default authSlice.reducer;
+export const { resetSuccess } = authSlice.actions
