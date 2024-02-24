@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authValidation } from '@/config/validation/authValidation';
 import { useRouter } from 'next/navigation';
-import { signIn ,useSession} from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { AuthInfo } from "@/config/env";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import Link from 'next/link';
 
 const page = () => {
 
@@ -48,7 +49,14 @@ const page = () => {
         <div className=' flex items-center justify-center h-screen'>
 
             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6 rounded-2xl py-8  px-5   w-[360px] border-[1px] border-solid border-black'>
-                <legend className=' text-center text-2xl '>{'Sign In'}</legend>
+
+                <div>
+                    <Link href="/" className="text-left underline text-xs">Back</Link>
+                    <legend className=' text-center text-2xl '>{'Sign In'}</legend>
+                </div>
+
+
+
 
                 <div className='relative'>
                     <input placeholder='Name' {...register("username", { required: true })} className={`placeholder:text-[#444445] rounded-md text-[12px] sm:text-[14px] md:text-[16px] border-[1px] border-solid ${errors?.username?.message ? 'border-red-500 placeholder:text-red-500' : 'border-[#C8CACD] '} w-full  px-4 py-2 sm:py-3 outline-none `} />
