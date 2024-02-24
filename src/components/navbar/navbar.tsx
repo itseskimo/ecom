@@ -4,9 +4,12 @@ import { useRouter } from 'next/navigation';
 import { NavbarProps } from '@/config/env';
 import { signOut } from "next-auth/react";
 import Link from 'next/link';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux'
 
 const navbar: React.FC<NavbarProps> = ({ session }) => {
     const router = useRouter()
+    const { cartItems } = useSelector((state: RootState) => state.cart);
 
     const handleSignOut = async () => {
         await signOut({ callbackUrl: "/" }); // You can specify the callback URL to redirect to after signing out.
@@ -48,7 +51,7 @@ const navbar: React.FC<NavbarProps> = ({ session }) => {
                 {!session?.name && <li className='cursor-pointer' onClick={() => router.push('/sign-in')}>Log In</li>}
                 {session?.name && <li className='cursor-pointer' > {`Hello ${session?.name}`}</li>}
                 {session?.name && <li className='cursor-pointer' onClick={handleSignOut}>Logout </li>}
-                <Link href="/cart">Basket</Link>
+                <Link href="/cart">{cartItems ? `Basket - ${cartItems.length}` : 'Basket'}</Link>
             </ul>
         </nav>
     )
