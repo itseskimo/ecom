@@ -13,9 +13,9 @@ const navbar: React.FC<NavbarProps> = ({ session }) => {
     };
 
     return (
-        <nav className='flex items-center justify-between bg-white shadow shadow-black p-4 sticky top-0'>
+        <nav className='flex items-center justify-between bg-white shadow shadow-gray-400 p-4 sticky top-0'>
 
-            <Link className='font-bold text-2xl cursor-pointer' href="/">Amazon</Link>
+            <Link className='font-bold text-xl sm:text-2xl cursor-pointer' href="/">Amazon</Link>
 
 
             <div className="flex items-center relative w-[40%]">
@@ -44,7 +44,7 @@ const navbar: React.FC<NavbarProps> = ({ session }) => {
                 />
             </div>
 
-            <ul className='flex items-center gap-5'>
+            <ul className='flex items-center gap-5 text-sm sm:text-base'>
                 {!session?.name && <li className='cursor-pointer' onClick={() => router.push('/sign-in')}>Log In</li>}
                 {session?.name && <li className='cursor-pointer' > {`Hello ${session?.name}`}</li>}
                 {session?.name && <li className='cursor-pointer' onClick={handleSignOut}>Logout </li>}
